@@ -24,7 +24,7 @@ export const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'categories-food',
+        redirectTo: 'home',
         pathMatch: 'full'
       }
     ]

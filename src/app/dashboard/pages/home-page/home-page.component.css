@@ -1,8 +1,22 @@
 
 .main-content{
-  height: 100vh;
-
   background-repeat: no-repeat;
   background-size: cover;
-  box-sizing: border-box;
+  height: 100vh;
+
+}
+
+
+.welcome-content{
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+}
+
+
+.text-title{
+  font-size: 50px;
+  font-weight: bold
 }
