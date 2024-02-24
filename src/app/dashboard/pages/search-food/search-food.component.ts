@@ -2,11 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FoodService } from '../../../services/foodService.service';
+import { Meal } from '../../../interfaces/meal.interface';
+import { CardMealComponent } from '../../../shared/card-meal/card-meal.component';
 
 @Component({
   selector: 'app-search-food',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, CardMealComponent],
   templateUrl: './search-food.component.html',
   styleUrl: './search-food.component.css'
 })
@@ -14,6 +16,9 @@ export default class SearchFoodComponent {
 
   // properties:
   public errosForm: boolean = false;
+  public meals!: Meal[]
+
+
 
   // inyectamos dependecias:
   private formB = inject(FormBuilder);
@@ -45,6 +50,15 @@ export default class SearchFoodComponent {
     }
     console.log(this.myInputForm.controls['name'].value)
     this.errosForm = false
+    this.foodService.getMealsByMeals(this.myInputForm.controls['name'].value).subscribe({
+      next: (resolve) => {
+        this.meals = resolve
+        console.log(this.meals)
+      }, error: (error) => {
+        console.log('hay un error!!', error)
+      }
+    })
+
 
   }
 
