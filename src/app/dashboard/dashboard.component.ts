@@ -21,7 +21,7 @@ export default class DashboardComponent implements OnInit {
 
 
   constructor(){
-    console.log(this.menuItems)
+    // console.log(this.menuItems)
 
   }
   // Initializing  flowbite

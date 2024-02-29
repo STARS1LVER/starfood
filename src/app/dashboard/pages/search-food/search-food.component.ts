@@ -5,6 +5,7 @@ import { FoodService } from '../../../services/foodService.service';
 import { Meal } from '../../../interfaces/meal.interface';
 import { CardMealComponent } from '../../../shared/card-meal/card-meal.component';
 import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-search-food',
@@ -43,31 +44,48 @@ export default class SearchFoodComponent {
   public onSubmitForm(): void {
     if( this.myInputForm.invalid ){
       // si esta invalido toca todos los errores
-      console.log('hay un error')
-      this.errosForm = true; // aca ponemos que se muestre el error si esta invaliado
-      this.myInputForm.markAllAsTouched()
-
-      return
-
+      this.handleFormErrors();
+      return;
     }
-    this.isLoading = true
-    console.log(this.myInputForm.controls['name'].value)
-    this.errosForm = false
-    this.foodService.getMealsByMeals(this.myInputForm.controls['name'].value).subscribe({
-      next: (resolve) => {
-       setTimeout(() => {
-         this.errosForm = false;
-         this.isLoading = false;
-          this.meals = resolve
-          console.log(this.meals)
-        }, 1500);
-      }, error: (error) => {
-        console.log('hay un error!!', error)
-      }
-    })
+
+    this.handleLoadingAndDataFetching()
+
 
 
   }
+
+  private handleFormErrors(): void {
+      console.log('hay un error en el formulario')
+      this.errosForm = true; // aca ponemos que se muestre el error si esta invaliado
+      this.myInputForm.markAllAsTouched()
+  }
+
+  private handleLoadingAndDataFetching(): void {
+
+    this.isLoading = true;
+    this.errosForm = false;
+
+    this.foodService.getMealsByMeals(this.myInputForm.controls['name'].value)
+    .pipe(
+      delay(1500)
+    )
+    .subscribe({
+      next: ( meals ) => {
+        this.meals = meals
+      },
+      error: ( error ) => {
+        console.log('Hay un error!!', error)
+        this.errosForm = true
+      },
+      complete: () => {
+        this.isLoading = false;
+      }
+    })
+
+  }
+
+
+
 
   /**
    * Este metodo es para ver los errores
