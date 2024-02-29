@@ -23,6 +23,11 @@ export const routes: Routes = [
         loadComponent: () => import('./dashboard/pages/search-food/search-food.component')
       },
       {
+        path: 'search-by-letter',
+        title:'Search Food By letter',
+        loadComponent: () => import('./dashboard/pages/search-by-letter/search-by-letter.component')
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'
