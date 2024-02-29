@@ -30,15 +30,26 @@
 
 
   </form>
+
+
 </div>
 
 
+  @if (isLoading) {
+    <div>
+      <app-spinner></app-spinner>
+    </div>
 
-  <div class="grid grid-cols-2 p-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 ">
-    @for (meal of meals; track $index) {
-      <app-card-meal [meal]="meal"></app-card-meal>
-    }
-  </div>
+  } @else {
+    <div class="grid grid-cols-2 p-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 ">
+      @for (meal of meals; track $index) {
+        <app-card-meal [meal]="meal"></app-card-meal>
+      }
+    </div>
+  }
+
+
+
 
 
 

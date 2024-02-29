@@ -1,11 +1,18 @@
 
-<section>
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  ">
-    @for (letter of abecedarioFood; track $index) {
-        <div class="">
-          <button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"> {{ letter }} </button>
-        </div>
+<section class="section-content">
 
+  <h1 class="text-center mt-2 mb-2">
+    Choose a letter and you will get a recipe for that letter
+  </h1>
+
+  <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7  ">
+    @for (letter of abecedarioFood; track $index) {
+      <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-1">
+
+        <h2 class="mb-1 text-xl font-bold tracking-tight text-gray-900 dark:text-white m-2"> {{letter}} </h2>
+
+
+      </div>
       }
   </div>
 </section>

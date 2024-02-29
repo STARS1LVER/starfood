@@ -1,0 +1,22 @@
+.section-content{
+  display: flex;
+  height: 100vh;
+  /* border: 1px solid red; */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+}
+
+
+
+
+
+
+@media screen and (max-width: 980px) {
+
+  .section-content{
+    height: 100%;
+  }
+
+}

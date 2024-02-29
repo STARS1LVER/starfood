@@ -4,11 +4,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { FoodService } from '../../../services/foodService.service';
 import { Meal } from '../../../interfaces/meal.interface';
 import { CardMealComponent } from '../../../shared/card-meal/card-meal.component';
+import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
 
 @Component({
   selector: 'app-search-food',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, CardMealComponent],
+  imports: [ReactiveFormsModule, CommonModule, CardMealComponent, SpinnerComponent],
   templateUrl: './search-food.component.html',
   styleUrl: './search-food.component.css'
 })
@@ -17,6 +18,7 @@ export default class SearchFoodComponent {
   // properties:
   public errosForm: boolean = false;
   public meals!: Meal[]
+  public isLoading:boolean = false;
 
 
 
@@ -48,12 +50,17 @@ export default class SearchFoodComponent {
       return
 
     }
+    this.isLoading = true
     console.log(this.myInputForm.controls['name'].value)
     this.errosForm = false
     this.foodService.getMealsByMeals(this.myInputForm.controls['name'].value).subscribe({
       next: (resolve) => {
-        this.meals = resolve
-        console.log(this.meals)
+       setTimeout(() => {
+         this.errosForm = false;
+         this.isLoading = false;
+          this.meals = resolve
+          console.log(this.meals)
+        }, 1500);
       }, error: (error) => {
         console.log('hay un error!!', error)
       }

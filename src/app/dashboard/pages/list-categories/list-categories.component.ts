@@ -16,6 +16,7 @@ import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
 export default class ListCategoriesComponent  implements OnInit{
 
   public allListCategories!: any[]
+  
 
   private foodService = inject(FoodService);
 
