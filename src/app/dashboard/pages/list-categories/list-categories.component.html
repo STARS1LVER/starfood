@@ -5,16 +5,18 @@
     Lista de categorias
   </h1>
 
-  <div  class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 ">
-    @for (category of allListCategories; track category.idCategory) {
-     <div class="p-3">
-      <app-card-food-category  [allCategoriesList]="category" ></app-card-food-category>
-     </div>
-    }@empty {
-      <div class="content-spinner">
-        <app-spinner></app-spinner>
-      </div>
-    }
+  <div class="content-list">
+    <div  class=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 ">
+      @for (category of allListCategories; track category.idCategory) {
+       <div class="p-3">
+        <app-card-food-category  [allCategoriesList]="category" ></app-card-food-category>
+       </div>
+      }@empty {
+        <div class="content-spinner">
+          <app-spinner></app-spinner>
+        </div>
+      }
+    </div>
   </div>
 
 </section>
