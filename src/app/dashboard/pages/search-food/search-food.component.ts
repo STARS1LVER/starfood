@@ -6,11 +6,20 @@ import { Meal } from '../../../interfaces/meal.interface';
 import { CardMealComponent } from '../../../shared/card-meal/card-meal.component';
 import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
 import { delay } from 'rxjs';
+import { NotSearchComponent } from '../../../shared/not-search/not-search.component';
+import { InfoErrorComponent } from '../../../shared/info-error/info-error.component';
 
 @Component({
   selector: 'app-search-food',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, CardMealComponent, SpinnerComponent],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    CardMealComponent,
+    SpinnerComponent,
+    InfoErrorComponent,
+    NotSearchComponent,
+  ],
   templateUrl: './search-food.component.html',
   styleUrl: './search-food.component.css'
 })
@@ -20,6 +29,7 @@ export default class SearchFoodComponent {
   public errosForm: boolean = false;
   public meals!: Meal[]
   public isLoading:boolean = false;
+  public notSearch: boolean = false;
 
 
 
